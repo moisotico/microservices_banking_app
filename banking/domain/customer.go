@@ -14,7 +14,7 @@ type Customer struct {
 // Interface for dbs and mock implementations
 type CustomerRepository interface {
 	// All customers
-	FindAll() ([]Customer, error)
+	FindAll() ([]Customer, *errs.AppError)
 	// pointer in case we need nil
 	ById(string) (*Customer, *errs.AppError)
 }
