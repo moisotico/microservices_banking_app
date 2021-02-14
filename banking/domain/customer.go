@@ -13,8 +13,10 @@ type Customer struct {
 
 // Interface for dbs and mock implementations
 type CustomerRepository interface {
+	// status can be active (1) or inactive (0)
+
 	// All customers
-	FindAll() ([]Customer, *errs.AppError)
+	FindAll(status string) ([]Customer, *errs.AppError)
 	// pointer in case we need nil
 	ById(string) (*Customer, *errs.AppError)
 }

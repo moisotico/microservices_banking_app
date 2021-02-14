@@ -18,7 +18,9 @@ func (ch *CustomerHandlers) getAllCustomers(w http.ResponseWriter, r *http.Reque
 		{Name: "Woises", City: "San Pedro", Zipcode: "11505"},
 	} */
 
-	customers, err := ch.service.GetAllCustomer()
+	status := r.URL.Query().Get("status")
+
+	customers, err := ch.service.GetAllCustomer(status)
 	if err != nil {
 		writeResponse(w, err.Code, err.AsMessage())
 	} else {
