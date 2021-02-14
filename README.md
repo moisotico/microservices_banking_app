@@ -53,5 +53,3 @@ http://localhost:8000/customers
 
 
 
-
-
