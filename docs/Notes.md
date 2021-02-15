@@ -1,4 +1,6 @@
-# Hexagonal arch
+# Notes
+
+## Hexagonal arch
 
 Hexagonal arch is not very complicated.
 
@@ -27,3 +29,14 @@ On the next use case diagram is shown what we're going to build:
 
 For more information see [this article](https://www.qwan.eu/2020/08/20/hexagonal-architecture.html).
 
+---
+
+## DTO Notes
+
+* The communication between business & user side  uses the DTO layer.
+* improves modularity & prevents object scattering.
+* Transformation on business side, on server port (see Hex_arch_notes.md)
+
+
+
+![DTO architecture](/home/campmois/courses/golang/REST_microservices/docs/img/DTO.png)
