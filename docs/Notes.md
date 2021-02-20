@@ -1,5 +1,9 @@
 # Notes
 
+General notes on the course [REST based micro-services API development in Golang](https://www.udemy.com/course/rest-based-microservices-api-development-in-go-lang/) 
+
+---
+
 ## Hexagonal arch
 
 Hexagonal arch is not very complicated.
