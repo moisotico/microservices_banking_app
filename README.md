@@ -8,6 +8,7 @@ Part of the [REST based micro-services API development in Golang](https://www.ud
 
 * Install Golang latest version [from here](https://golang.org/doc/install).
 * Install Postman [from here](https://www.postman.com/downloads/) to check the API.
+* Install `docker-compose` [from here](https://docs.docker.com/compose/install/).
 
 ## Run
 
@@ -52,4 +53,11 @@ http://localhost:8000/customers
 ```
 
 
+
+## Additional Notes
+
+* [Requirements on assignment 1](./docs/Assignment_1.md)
+* [Requirements on assignment 2](./docs/Assignment_2.md)
+
+Please review the [Course notes](./docs/Notes.md) for more information. 
 
