@@ -39,7 +39,7 @@ You can use any one of the following procedure to make a database instance, and 
 
 ```shell
 $ cd banking/
-$ go run main.go
+$ ./start.sh
 ```
 
 
@@ -49,7 +49,7 @@ $ go run main.go
 * To check the API, open Postman and use the GET method with the following address:
 
 ```json
-http://localhost:8000/customers
+http://localhost:8282/customers
 ```
 
 
