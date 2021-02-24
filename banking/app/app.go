@@ -15,10 +15,18 @@ import (
 
 func sanityCheck() {
 	// Variables to be checked on the sanityCheck
-	keys := []string{"SERVER_ADDRESS", "SERVER_PORT", "DB_USER", "DB_PASSWD", "DB_ADDR", "DB_PORT", "DB_NAME"}
+	keys := []string{
+		"SERVER_ADDRESS",
+		"SERVER_PORT",
+		"DB_USER",
+		"DB_PASSWD",
+		"DB_ADDR",
+		"DB_PORT",
+		"DB_NAME",
+	}
 	for _, k := range keys {
 		if os.Getenv(k) == "" {
-			log.Fatalf("Environment variable %s is not defined", k)
+			log.Fatalf("Environment variable %s is not defined, Terminating application...", k)
 		}
 	}
 }
@@ -41,6 +49,7 @@ func Start() {
 	router.HandleFunc("/customers", ch.getAllCustomers).Methods(http.MethodGet)
 	router.HandleFunc("/customers/{customer_id:[0-9]+}", ch.getCustomer).Methods(http.MethodGet)
 	router.HandleFunc("/customers/{customer_id:[0-9]+}/account", ah.NewAccount).Methods(http.MethodPost)
+	router.HandleFunc("/customers/{customer_id:[0-9]+}/account/{account_id:[0-9]+}", ah.MakeTransaction).Methods(http.MethodPost)
 
 	// example on new customer
 

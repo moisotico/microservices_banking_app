@@ -35,3 +35,32 @@ func (h *AccountHandler) NewAccount(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+// For transactions
+// Format: /customers/2000/accounts/90720
+func (h AccountHandler) MakeTransaction(w http.ResponseWriter, r *http.Request) {
+	// get account_id & customer_id from URL
+	vars := mux.Vars(r)
+	accountId := vars["account_id"]
+	customerId := vars["customer_id"]
+
+	//decode incoming request
+	var request dto.TransactionRequest
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		writeResponse(w, http.StatusBadRequest, err.Error())
+	} else {
+		// build requested obj
+		request.AccountId = accountId
+		request.CustomerId = customerId
+
+		// make the transaction
+		account, appError := h.service.MakeTransaction(request)
+		if appError != nil {
+			writeResponse(w, appError.Code, appError.AsMessage())
+		} else {
+			writeResponse(w, http.StatusOK, account)
+		}
+
+	}
+
+}
