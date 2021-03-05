@@ -21,7 +21,7 @@ Hexagonal arch is not very complicated.
 
 On the next use case diagram is shown what we're going to build:
 
-![App use_case_diagram](img/arch.png)
+![App use_case_diagram](img/arch.png)![DTO architecture](/home/campmois/courses/golang/REST_microservices/docs/img/DTO.png)
 
 
 
@@ -44,3 +44,21 @@ For more information see [this article](https://www.qwan.eu/2020/08/20/hexagonal
 
 
 ![DTO architecture](/home/campmois/courses/golang/REST_microservices/docs/img/DTO.png)
+
+---
+
+##  Security
+
+### User Case Diagram
+
+See the order of the 6 steps in the following diagram:
+
+![DTO architecture](/home/campmois/courses/golang/REST_microservices/docs/img/auth_diagram.png)
+
+### JWT
+
+Components of Token:
+
+- Header
+- Payload
+- Signature
