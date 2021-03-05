@@ -52,7 +52,21 @@ $ ./start.sh
 http://localhost:8282/customers
 ```
 
+### Routes:
 
+These are the following routes to use:
+
+| **Rou**tes           | Methof | Direction                                      |
+| -------------------- | ------ | ---------------------------------------------- |
+| Get all Customers    | GET    | `/customer`                                    |
+| Get Customer by Id   | GET    | `/customer/(customer_id)`                      |
+| Create a new account | POST   | `/customer/(customer_id)/account`              |
+| Make a transaction   | POST   | `/customer/(customer_id)/account/{account_id}` |
+
+- Admin role can request via all 4 routes.
+- User role can only use 2 methods:
+  - Get Customer by Id
+  - Make a transaction
 
 ## Additional Notes
 
