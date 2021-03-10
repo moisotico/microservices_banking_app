@@ -9,9 +9,13 @@ func (r TransactionRequest) IsTransactionTypeWithdrawal() bool {
 	// return true or false
 	return r.TransactionType == WITHDRAWAL
 }
+func (r TransactionRequest) IsTransactionTypeDeposit() bool {
+	// return true or false
+	return r.TransactionType == DEPOSIT
+}
 
 func (r TransactionRequest) Validate() *errs.AppError {
-	if r.TransactionType != WITHDRAWAL && r.TransactionType != DEPOSIT {
+	if !r.IsTransactionTypeWithdrawal() && !r.IsTransactionTypeDeposit() {
 		return errs.NewValidationError("Transaction can only be a deposit or withdrawal")
 	}
 	if r.Amount <= 0 {

@@ -10,8 +10,6 @@ Part of the [REST based micro-services API development in Golang](https://www.ud
 * Install Postman [from here](https://www.postman.com/downloads/) to check the API.
 * Install `docker-compose` [from here](https://docs.docker.com/compose/install/).
 
-## Run
-
 ### mysql database
 
 You can use any one of the following procedure to make a database instance, and make the changes to your `start.sh` file accordingly
@@ -33,7 +31,30 @@ You can use any one of the following procedure to make a database instance, and 
 
    
 
-### App
+## Auth
+
+* On the main folder open a terminal and run to start the API:
+
+```shell
+$ cd banking-auth/
+$ ./start.sh
+```
+
+
+
+### Postman
+
+* To check the API, open Postman and use the POST method with the following address:
+
+```json
+http://localhost:8181/auth/login
+```
+
+
+
+
+
+## App
 
 * On the main folder open a terminal and run to start the API:
 
@@ -52,21 +73,34 @@ $ ./start.sh
 http://localhost:8282/customers
 ```
 
-### Routes:
+### Routes
 
 These are the following routes to use:
 
-| **Rou**tes           | Methof | Direction                                      |
-| -------------------- | ------ | ---------------------------------------------- |
-| Get all Customers    | GET    | `/customer`                                    |
-| Get Customer by Id   | GET    | `/customer/(customer_id)`                      |
-| Create a new account | POST   | `/customer/(customer_id)/account`              |
-| Make a transaction   | POST   | `/customer/(customer_id)/account/{account_id}` |
+| **Rou**tes      | Methof | Direction                                      |
+| --------------- | ------ | ---------------------------------------------- |
+| GetAllCustomers | GET    | `/customer`                                    |
+| GetCustomer     | GET    | `/customer/(customer_id)`                      |
+| NewAccount      | POST   | `/customer/(customer_id)/account`              |
+| NewTransaction  | POST   | `/customer/(customer_id)/account/{account_id}` |
 
 - Admin role can request via all 4 routes.
+
 - User role can only use 2 methods:
+
   - Get Customer by Id
   - Make a transaction
+
+- Format: 
+
+  ```
+  {
+  	"admin": ["GetAllCustomers", "GetCustomer", "NewAccount", "NewTransaction"]
+  	"user": ["GetCustomer", "NewTransaction"]
+  }
+  ```
+
+  
 
 ## Additional Notes
 
