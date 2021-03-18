@@ -8,6 +8,8 @@ import (
 	"github.com/moisotico/banking/errs"
 )
 
+const dbTSLayout = "2006-01-02 15:04:05"
+
 type AccountService interface {
 	NewAccount(request dto.NewAccountRequest) (*dto.NewAccountResponse, *errs.AppError)
 	MakeTransaction(request dto.TransactionRequest) (*dto.TransactionResponse, *errs.AppError)
@@ -18,8 +20,7 @@ type DefaultAccountService struct {
 }
 
 func (s DefaultAccountService) NewAccount(req dto.NewAccountRequest) (*dto.NewAccountResponse, *errs.AppError) {
-	err := req.Validate()
-	if err != nil {
+	if err := req.Validate(); err != nil {
 		return nil, err
 	}
 	account := domain.NewAccount(req.CustomerId, req.AccountType, req.Amount)
@@ -54,7 +55,7 @@ func (s DefaultAccountService) MakeTransaction(req dto.TransactionRequest) (*dto
 		AccountId:       req.AccountId,
 		Amount:          req.Amount,
 		TransactionType: req.TransactionType,
-		TransactionDate: time.Now().Format("2006-01-02 15:04:05"),
+		TransactionDate: time.Now().Format(dbTSLayout),
 	}
 	transaction, appError := s.repo.SaveTransaction(t)
 	if appError != nil {
