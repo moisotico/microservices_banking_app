@@ -31,7 +31,7 @@ You can use any one of the following procedure to make a database instance, and 
 
    
 
-## Auth
+## Authentication
 
 * On the main folder open a terminal and run to start the API:
 
@@ -44,13 +44,23 @@ $ ./start.sh
 
 ### Postman
 
+* Check the `banking/users` database to check the correct users & passwords, please note that we are using  `usr` and `pass` instead as an example
 * To check the API, open Postman and use the POST method with the following address:
 
 ```json
 http://localhost:8181/auth/login
 ```
 
+* Add the username & password in the *Body* of the request.
 
+  ```json
+  {
+      "username": "usr",
+      "password": "pass"
+  }
+  ```
+
+* **Copy the response** as it represents the bearer token, which is necessary  for the `banking` App requests.
 
 
 
@@ -73,11 +83,13 @@ $ ./start.sh
 http://localhost:8282/customers
 ```
 
+* Go to *Auth* and select *Bearer token*, then proceed to paste the token obtained from the request previously made with `banking-auth` 
+
 ### Routes
 
-These are the following routes to use:
+These are the following routes you can use based on the bearer token obtained and the role selected (either admin or user):
 
-| **Rou**tes      | Methof | Direction                                      |
+| **Rou**tes      | Method | Direction                                      |
 | --------------- | ------ | ---------------------------------------------- |
 | GetAllCustomers | GET    | `/customer`                                    |
 | GetCustomer     | GET    | `/customer/(customer_id)`                      |
@@ -88,8 +100,8 @@ These are the following routes to use:
 
 - User role can only use 2 methods:
 
-  - Get Customer by Id
-  - Make a transaction
+  - Get Customer by Id (**GetCustomer**)
+  - Make a transaction (**NewTransaction**)
 
 - Format: 
 
@@ -98,6 +110,21 @@ These are the following routes to use:
   	"admin": ["GetAllCustomers", "GetCustomer", "NewAccount", "NewTransaction"]
   	"user": ["GetCustomer", "NewTransaction"]
   }
+  ```
+
+## Testing
+
+* Some tests require us to generate mock files, so we should run the following command first:
+
+  ```shell
+  $ cd banking
+  $ go generate ./...
+  ```
+
+* You can test various files and see the current coverage by going to the folder of the test and  running:
+
+  ```shell
+  $ go test -v -cover
   ```
 
   
